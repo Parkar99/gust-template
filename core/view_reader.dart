@@ -11,9 +11,9 @@ Future<String> read(String path, {bool partial = false, bool staticFiles = false
   File f;
 
   if (staticFiles) {
-    f = File(p.join(p.current, 'bin', Env.i().staticDir) + path);
+    f = File(p.join(p.current, Env.i().staticDir) + path);
   } else {
-    f = File(p.join(p.current, 'bin', Env.i().viewsDir, '$path.${partial ? 'partial' : 'view'}.html'));
+    f = File(p.join(p.current, Env.i().viewsDir, '$path.${partial ? 'partial' : 'view'}.html'));
   }
   return f.readAsString();
 }
@@ -34,7 +34,7 @@ Template? _resolvePartials(String name) {
 }
 
 Future<List<String>> _getPartials() async {
-  final dir = Directory(p.join(p.current, 'bin', Env.i().viewsDir, Env.i().partialsDir));
+  final dir = Directory(p.join(p.current, Env.i().viewsDir, Env.i().partialsDir));
   if (!dir.existsSync()) return [];
 
   final partials = <String>[];
