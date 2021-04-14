@@ -4,7 +4,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import '../controllers/static.controller.dart';
 import '../core/env.dart';
 import '../core/view_reader.dart';
-import '../routes.dart';
+import 'routes.dart';
 
 const _argErrorMessage = 'Expected DEV or PROD as argument';
 

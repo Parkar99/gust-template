@@ -1,6 +1,6 @@
 import 'package:shelf_router/shelf_router.dart';
 
-import 'controllers/home.controller.dart';
+import '../controllers/home.controller.dart';
 
 final _app = Router();
 
