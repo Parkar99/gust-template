@@ -1,10 +1,10 @@
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
-import 'controllers/static.controller.dart';
-import 'core/env.dart';
-import 'core/view_reader.dart';
-import 'routes.dart';
+import '../controllers/static.controller.dart';
+import '../core/env.dart';
+import '../core/view_reader.dart';
+import '../routes.dart';
 
 const _argErrorMessage = 'Expected DEV or PROD as argument';
 
@@ -16,7 +16,11 @@ Future<void> main(List<String> args) async {
   await initPartials();
   final app = getRouter();
 
-  final router = const Pipeline().addMiddleware(logRequests()).addMiddleware(createMiddleware(
+  var pipeline = const Pipeline();
+  if (env == 'DEV') {
+    pipeline = pipeline.addMiddleware(logRequests());
+  }
+  final router = pipeline.addMiddleware(createMiddleware(
     requestHandler: (request) {
       if (request.url.toString().startsWith(Env.i().staticUrl)) {
         return StaticController().index(request);
