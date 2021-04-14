@@ -13,7 +13,7 @@ Future<String> read(String path, {bool partial = false, bool staticFiles = false
   if (staticFiles) {
     f = File(p.join(p.current, Env.i().staticDir) + path);
   } else {
-    f = File(p.join(p.current, Env.i().viewsDir, '$path.${partial ? 'partial' : 'view'}.html'));
+    f = File(p.join(p.current, Env.i().viewsDir, '$path.${partial ? 'partial' : 'view'}.mustache'));
   }
   return f.readAsString();
 }
@@ -39,7 +39,7 @@ Future<List<String>> _getPartials() async {
 
   final partials = <String>[];
   await for (final file in dir.list()) {
-    partials.add(p.basename(file.path.replaceFirst('.partial.html', '')));
+    partials.add(p.basename(file.path.replaceFirst('.partial.mustache', '')));
   }
   return partials;
 }
