@@ -1,9 +1,9 @@
+import 'package:gust_template/controllers/static.controller.dart';
+import 'package:gust_template/core/env.dart';
+import 'package:gust_template/core/view_reader.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
-import '../controllers/static.controller.dart';
-import '../core/env.dart';
-import '../core/view_reader.dart';
 import 'routes.dart';
 
 const _argErrorMessage = 'Expected DEV or PROD as argument';
