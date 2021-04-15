@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec \"dart run bin/main.dart DEV\" -e \"dart\"",
+    "dev": "nodemon --exec \"dart run bin/main.dart DEV\" -e \"dart,partial.mustache\"",
     "build": "dart compile exe bin/main.dart -o bin/server",
     "clean": "rm bin/server",
     "prod": "./bin/server PROD"
