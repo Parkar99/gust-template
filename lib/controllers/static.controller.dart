@@ -9,7 +9,7 @@ import '../core/r.dart';
 
 class StaticController {
   Future<Response> index(Request request) async {
-    final fileName = request.url.toString().replaceFirst(Env.i().staticUrl, '');
+    final fileName = basename(request.url.toString());
     final path = join(current, Env.i().staticDir) + fileName;
 
     if (!File(path).existsSync()) return R.text(null, statusCode: 404);
