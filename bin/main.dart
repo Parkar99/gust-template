@@ -52,7 +52,7 @@ FutureOr<Response?> staticMiddleware(Request request) {
 
 FutureOr<Response?> addSlashMiddleware(Request request) {
   final url = request.url.toString();
-  if (!url.endsWith('/')) {
+  if (url.isNotEmpty && !url.endsWith('/')) {
     return R.redirect('/${url.substring(0, url.length)}/');
   }
 }
