@@ -12,7 +12,7 @@ import 'routes.dart';
 const _argErrorMessage = 'Expected DEV or PROD as argument';
 
 Future<void> main(List<String> args) async {
-  if (args.isEmpty) throw Exception(_argErrorMessage);
+  if (args.isEmpty) throw ArgumentError(_argErrorMessage);
   Env.i().env = args.first;
   final env = Env.i().env;
 
