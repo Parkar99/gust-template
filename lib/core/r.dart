@@ -59,4 +59,21 @@ class R {
       headers: (headers?..addAll(_jsonContentTypeHeader)) ?? _jsonContentTypeHeader,
     );
   }
+
+  static Response redirect(
+    String location, {
+    Map<String, /* String | List<String> */ Object>? headers,
+    Encoding? encoding,
+    Map<String, Object>? context,
+    int? statusCode,
+  }) {
+    final redirectHeader = {HttpHeaders.locationHeader: location};
+
+    return Response(
+      statusCode ?? HttpStatus.temporaryRedirect,
+      context: context,
+      encoding: encoding,
+      headers: (headers?..addAll(redirectHeader)) ?? redirectHeader,
+    );
+  }
 }
