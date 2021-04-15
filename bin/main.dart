@@ -25,7 +25,7 @@ Future<void> main(List<String> args) async {
   }
   final router = pipeline
       .addMiddleware(createMiddleware(requestHandler: staticMiddleware))
-      .addMiddleware(createMiddleware(requestHandler: removeSlash))
+      .addMiddleware(createMiddleware(requestHandler: addSlashMiddleware))
       .addHandler(app);
 
   final domain = getDomain(env);
@@ -50,9 +50,9 @@ FutureOr<Response?> staticMiddleware(Request request) {
   }
 }
 
-FutureOr<Response?> removeSlash(Request request) {
+FutureOr<Response?> addSlashMiddleware(Request request) {
   final url = request.url.toString();
-  if (url.endsWith('/')) {
-    return R.redirect('/${url.substring(0, url.length - 1)}');
+  if (!url.endsWith('/')) {
+    return R.redirect('/${url.substring(0, url.length)}/');
   }
 }
