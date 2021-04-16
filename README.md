@@ -7,4 +7,4 @@
 - [ ] Add session handler
 - [ ] Add support for file uploading
 - [ ] Extract template logic to independent package
-- [ ] Change name of project in `pubspec.yaml` to the folder it's generated in
+- [ ] Change name of project in `pubspec.yaml` and all imports to the folder it's generated in

@@ -1,6 +1,6 @@
 name: gust_template
 description: MVC framework for Dart based on shelf
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/Parkar99/gust.git
 
 environment:
