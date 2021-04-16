@@ -1,12 +1,13 @@
 name: gust_template
-description: MVC framework for Dart
-version: 0.0.1
+description: MVC framework for Dart based on shelf
+version: 0.1.0
 repository: https://github.com/Parkar99/gust.git
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  hotreloader: ^3.0.0
   mustache_template: ^2.0.0
   path: ^1.8.0
   postgres: ^2.3.1

@@ -4,10 +4,7 @@ import 'package:path/path.dart' as p;
 
 import 'env.dart';
 
-late final List<String> _partials;
-final _parsedPartials = <String, String>{};
-
-Future<String> read(String path, {bool partial = false, bool staticFiles = false}) async {
+String read(String path, {bool partial = false, bool staticFiles = false}) {
   File f;
 
   if (staticFiles) {
@@ -15,31 +12,13 @@ Future<String> read(String path, {bool partial = false, bool staticFiles = false
   } else {
     f = File(p.join(p.current, Env.i().viewsDir, '$path.${partial ? 'partial' : 'view'}.mustache'));
   }
-  return f.readAsString();
+  return f.readAsStringSync();
 }
 
-Future<String> render(String path, {Map<String, dynamic>? data}) async {
-  return Template(await read(path), partialResolver: _resolvePartials).renderString(data);
-}
-
-Future<void> initPartials() async {
-  _partials = await _getPartials();
-  for (final partial in _partials) {
-    _parsedPartials[partial] = await read('${Env.i().partialsDir}/$partial', partial: true);
-  }
+String render(String path, {Map<String, dynamic>? data}) {
+  return Template(read(path), partialResolver: _resolvePartials).renderString(data);
 }
 
 Template? _resolvePartials(String name) {
-  if (_partials.contains(name)) return Template(_parsedPartials[name] ?? name, name: name);
-}
-
-Future<List<String>> _getPartials() async {
-  final dir = Directory(p.join(p.current, Env.i().viewsDir, Env.i().partialsDir));
-  if (!dir.existsSync()) return [];
-
-  final partials = <String>[];
-  await for (final file in dir.list()) {
-    partials.add(p.basename(file.path.replaceFirst('.partial.mustache', '')));
-  }
-  return partials;
+  return Template(read('${Env.i().partialsDir}/$name', partial: true), name: name);
 }

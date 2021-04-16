@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:gust_template/controllers/static.controller.dart';
 import 'package:gust_template/core/env.dart';
 import 'package:gust_template/core/r.dart';
-import 'package:gust_template/core/view_reader.dart';
+import 'package:hotreloader/hotreloader.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
@@ -16,7 +16,6 @@ Future<void> main(List<String> args) async {
   Env.i().env = args.first;
   final env = Env.i().env;
 
-  await initPartials();
   final app = getRouter();
 
   var pipeline = const Pipeline();
@@ -29,6 +28,7 @@ Future<void> main(List<String> args) async {
       .addHandler(app);
 
   final domain = getDomain(env);
+  await HotReloader.create(debounceInterval: const Duration(milliseconds: 500));
   io.serve(router, domain, Env.i().port);
   print('Server running on $domain:${Env.i().port}');
 }
