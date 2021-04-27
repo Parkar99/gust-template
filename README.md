@@ -3,7 +3,7 @@
 ## Tasks
 
 - [x] Add static files
-- [ ] Add a cookie parser
+- [x] Add a cookie parser
 - [ ] Add session handler
 - [ ] Add support for file uploading
 - [ ] Extract template logic to independent package
