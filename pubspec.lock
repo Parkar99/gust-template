@@ -127,6 +127,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  shelf_cookie:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: nullsafety
+      resolved-ref: "48e7a5c4c43c7c73ddc9bbb891cd8d33e41780ef"
+      url: "https://github.com/hpoul/shelf-cookie.git"
+    source: git
+    version: "2.0.0"
   shelf_router:
     dependency: "direct main"
     description:
