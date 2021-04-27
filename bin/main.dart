@@ -7,6 +7,7 @@ import 'package:gust_template/routes.dart';
 import 'package:hotreloader/hotreloader.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_cookie/shelf_cookie.dart';
 
 Future<void> main(List<String> args) async {
   Env.i().env = args.isNotEmpty ? args.first : 'PROD';
@@ -23,6 +24,7 @@ Future<void> main(List<String> args) async {
   final router = pipeline
       .addMiddleware(createMiddleware(requestHandler: staticMiddleware))
       .addMiddleware(createMiddleware(requestHandler: addSlashMiddleware))
+      .addMiddleware(cookieParser())
       .addHandler(app);
 
   final domain = getDomain(env);

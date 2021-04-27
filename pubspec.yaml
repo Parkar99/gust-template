@@ -12,6 +12,10 @@ dependencies:
   path: ^1.8.0
   postgres: ^2.3.1
   shelf: ^1.1.0
+  shelf_cookie: 
+    git:
+      url: https://github.com/hpoul/shelf-cookie.git
+      ref: nullsafety
   shelf_router: ^1.0.0
   shelf_static: ^1.0.0
 
